@@ -22,19 +22,19 @@ THE SOFTWARE.
 
 Matrix := List clone
 Matrix print := method(
-	self foreach(i, row,
-		row print
-		"\n" print		
-	)
+    self foreach(i, row,
+        row print
+        "\n" print        
+    )
 )
 
 matrix := method(m, n,
-	new := Matrix clone
+    new := Matrix clone
     new append(Vector clone setSize(n + 1) rangeFill)
 
     for(i, 1, m, 
-    	new append(Vector clone setSize(n + 1))
-		new at(i) atPut(0, i)
+        new append(Vector clone setSize(n + 1))
+        new at(i) atPut(0, i)
     )
 
     new
@@ -45,24 +45,24 @@ settings costInsert := 1
 settings costDelete := 1
 settings costSubstitute := 2
 
-Sequence levenshteinDistanceFrom := method(target,	
+Sequence levenshteinDistanceFrom := method(target,    
     source := self
     distanceMatrix := matrix(source size, target size)
 
- 	for(i, 1, source size, 
- 		for(j, 1, target size, 
-    		costInsert := distanceMatrix at(i - 1) at(j) + settings costInsert
-    		costDelete := distanceMatrix at(i) at(j - 1) + settings costDelete
+    for(i, 1, source size, 
+        for(j, 1, target size, 
+            costInsert := distanceMatrix at(i - 1) at(j) + settings costInsert
+            costDelete := distanceMatrix at(i) at(j - 1) + settings costDelete
 
-    		costSubstitute := distanceMatrix at(i - 1) at (j - 1) + if(
-    			source at(i - 1) != target at(j -1), 
-    			settings costSubstitute, 
-    			0
-			)
+            costSubstitute := distanceMatrix at(i - 1) at (j - 1) + if(
+                source at(i - 1) != target at(j -1), 
+                settings costSubstitute, 
+                0
+            )
 
-    		distanceMatrix at(i) atPut(j, costSubstitute min(costDelete) min(costInsert))
- 		)
- 	)
+            distanceMatrix at(i) atPut(j, costSubstitute min(costDelete) min(costInsert))
+        )
+    )
 
- 	distanceMatrix at(source size) at(target size)
+    distanceMatrix at(source size) at(target size)
 )
