@@ -1,6 +1,6 @@
 
-Levenshtein
-===========
+levenshteinio
+=============
 
 A Levenshtein distance implementation for the Io programming language.
 
