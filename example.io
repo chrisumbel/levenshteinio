@@ -22,3 +22,10 @@ THE SOFTWARE.
 
 doFile("levenshtein.io")
 "intention" levenshteinDistanceFrom("execution") println
+
+levenshteinSettings := Object clone
+levenshteinSettings costInsert := 1
+levenshteinSettings costDelete := 1
+levenshteinSettings costSubstitute := 1
+
+"intention" levenshteinDistanceFrom("execution", levenshteinSettings) println

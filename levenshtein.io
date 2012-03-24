@@ -24,7 +24,7 @@ Matrix := List clone
 Matrix print := method(
     self foreach(i, row,
         row print
-        "\n" print        
+        "\n" print   
     )
 )
 
@@ -40,12 +40,13 @@ matrix := method(m, n,
     new
 )
 
-settings := Object clone
-settings costInsert := 1
-settings costDelete := 1
-settings costSubstitute := 2
+defaultSettings := Object clone
+defaultSettings costInsert := 1
+defaultSettings costDelete := 1
+defaultSettings costSubstitute := 2
 
-Sequence levenshteinDistanceFrom := method(target,    
+Sequence levenshteinDistanceFrom := method(target, settings,
+    settings = if(settings, settings, defaultSettings)
     source := self
     distanceMatrix := matrix(source size, target size)
 

@@ -13,7 +13,19 @@ Example
 produces the output
 
 	8
+
+The weights of the three edit operations can be adjusted with a settings object.
+
+	levenshteinSettings := Object clone
+	levenshteinSettings costInsert := 1
+	levenshteinSettings costDelete := 1
+	levenshteinSettings costSubstitute := 1
+
+	"intention" levenshteinDistanceFrom("execution", levenshteinSettings) println
 	
+which produces
+
+	5
 
 License
 =======
