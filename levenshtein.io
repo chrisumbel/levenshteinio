@@ -21,13 +21,6 @@ THE SOFTWARE.
 */
 
 Matrix := List clone
-Matrix print := method(
-    self foreach(i, row,
-        row print
-        "\n" print   
-    )
-)
-
 matrix := method(m, n,
     new := Matrix clone
     new append(Vector clone setSize(n + 1) rangeFill)
